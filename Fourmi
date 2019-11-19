@@ -13,31 +13,40 @@ struct position {
     int y;
 };
 struct environment {
-    struct position fourmi;
-    struct position nourriture[Nnour];
-    int tour;
+    struct position fourmi;/* position fourmi de coordonnées x y */
+    struct position nourriture[Nnour];// position de la nourriture
+    int tour;//Nombred de touts depuis que le fourmi est sorti du nid
 };
 struct position move_v1(struct position p){
-    //Initialement la fourmi part du nid de coordonnées (15,15)
-    p.x=15;
-    p.y=15;
+    printf("donner les positions x et y de la fourmi")
     int a = rand1();
     switch (a) {
    	 case 0/*déplacement vers le haut*/:
-   		 p.y = p.y + 1;
-   		 break;
+        p.y = p.y + 1;
+        if p.y > 32 //si le déplacement dépasse le cadre alors retourne a sa postion antérieur
+            p.y = p.y - 1;
+        else break;
+        break;
    	 case 1/*déplacement vers le bas */:
-   		 p.y = p.y - 1;
-   		 break;
+        p.y = p.y - 1;
+        if (p.y < 0)
+            p.y = p.y + 1;
+        else break;
+        break;
    	 case 2/*déplacemet vers la droite*/:
-   		 p.x = p.x + 1;
-   		 break;
+        p.x = p.x + 1;
+        if (p.x > 32)
+            p.y = p.y - 1;
+        else break;
+        break;
    	 case 3/*déplacement vers la gauche*/:
-   		 p.x = p.x - 1;
-   		 break;
+        p.x = p.x - 1;
+        if (p.x <0)
+            p.y = p.y + 1;
+        else break;
+        break;
    	 default:
    		 puts("Erreur de programmation située dans le switch ou rand");
    		 break;
     }
-    printf("la fourmis est située aux coordonnées (%d,%d)\n",p.x,p.y);
 };
