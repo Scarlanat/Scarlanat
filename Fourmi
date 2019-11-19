@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <time.h>
+#define Nnour 31*31
+int rand1(void){
+    srand(time(NULL));
+    return rand()%4;
+}
+
+struct position {
+    int x;
+    int y;
+};
+struct environment {
+    struct position fourmi;
+    struct position nourriture[Nnour];
+    int tour;
+};
+struct position move_v1(struct position p){
+    //Initialement la fourmi part du nid de coordonnées (15,15)
+    p.x=15;
+    p.y=15;
+    int a = rand1();
+    switch (a) {
+   	 case 0/*déplacement vers le haut*/:
+   		 p.y = p.y + 1;
+   		 break;
+   	 case 1/*déplacement vers le bas */:
+   		 p.y = p.y - 1;
+   		 break;
+   	 case 2/*déplacemet vers la droite*/:
+   		 p.x = p.x + 1;
+   		 break;
+   	 case 3/*déplacement vers la gauche*/:
+   		 p.x = p.x - 1;
+   		 break;
+   	 default:
+   		 puts("Erreur de programmation située dans le switch ou rand");
+   		 break;
+    }
+    printf("la fourmis est située aux coordonnées (%d,%d)\n",p.x,p.y);
+};
