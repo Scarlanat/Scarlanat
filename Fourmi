@@ -2,11 +2,14 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
-#define Nnour 31*31
-int rand1(void){
+#define Nnour 31
+int randdeplacement(void){
     srand(time(NULL));
     return rand()%4;
 }
+int randnourriture(void){
+    srand(time(NULL));
+    return rand()%31;
 
 struct position {
     int x;
@@ -15,15 +18,15 @@ struct position {
 struct environment {
     struct position fourmi;/* position fourmi de coordonnées x y */
     struct position nourriture[Nnour];// position de la nourriture
-    int tour;//Nombred de touts depuis que le fourmi est sorti du nid
+    int tour;//Nombre de tours depuis que le fourmi est sorti du nid
 };
 struct position move_v1(struct position p){
     printf("donner les positions x et y de la fourmi")
-    int a = rand1();
+    int a = randdeplacement();
     switch (a) {
    	 case 0/*déplacement vers le haut*/:
         p.y = p.y + 1;
-        if p.y > 32 //si le déplacement dépasse le cadre alors retourne a sa postion antérieur
+        if p.y > 31 //si le déplacement dépasse le cadre alors retourne a sa postion antérieur
             p.y = p.y - 1;
         else break;
         break;
@@ -33,9 +36,9 @@ struct position move_v1(struct position p){
             p.y = p.y + 1;
         else break;
         break;
-   	 case 2/*déplacemet vers la droite*/:
+   	 case 2/*déplacement vers la droite*/:
         p.x = p.x + 1;
-        if (p.x > 32)
+        if (p.x > 31)
             p.y = p.y - 1;
         else break;
         break;
@@ -50,3 +53,29 @@ struct position move_v1(struct position p){
    		 break;
     }
 };
+
+struct environment init_v1 (struct position nid){
+    fourmi.x = nid.x;
+    fourmi.y = nid.y;
+    for (i=0,i<Nnour,i++)
+        nourriture[randnourriture(),randnourriture()];
+    tour = 0;
+};
+
+int main (struct environment experience){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
